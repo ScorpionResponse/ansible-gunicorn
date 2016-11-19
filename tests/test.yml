@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    - gunicorn_project_dir: "/tmp"
+    - gunicorn_wsgi_application: "test.wsgi:application"
   roles:
     - ansible-gunicorn
