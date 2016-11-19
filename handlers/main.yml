@@ -1,2 +1,5 @@
 ---
-# handlers file for ansible-gunicorn
+- name: Restart gunicorn
+  supervisorctl: 
+    name: gunicorn
+    state: restarted

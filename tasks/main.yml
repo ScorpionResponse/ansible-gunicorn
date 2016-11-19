@@ -1,2 +1,49 @@
 ---
-# tasks file for ansible-gunicorn
+- name: Install gunicorn
+  pip:
+    name: gunicorn
+    state: present
+
+- name: Create Group for Gunicorn
+  group:
+    name: "{{ gunicorn_group_name }}"
+    state: present
+
+- name: Create User for Gunicorn
+  user:
+    name: "{{ gunicorn_user_name }}"
+    groups: "{{ gunicorn_group_name }}"
+    append: yes
+
+- name: Create gunicorn log directory
+  file:
+    path: "{{ gunicorn_log_dir }}"
+    state: directory
+    owner: "{{ gunicorn_user_name }}"
+    group: "{{ gunicorn_group_name }}"
+    mode: 0775
+
+- name: Create gunicorn configuration directory
+  file:
+    path: "{{ gunicorn_config_dir }}"
+    state: directory
+    owner: "{{ gunicorn_user_name }}"
+    group: "{{ gunicorn_group_name }}"
+    mode: 0775
+
+- name: Install gunicorn config script
+  template: 
+    src: gunicorn.conf.py.j2 
+    dest: "{{ gunicorn_config_dir }}/gunicorn.conf.py" 
+    owner: "{{ gunicorn_user_name }}"
+    group: "{{ gunicorn_group_name }}"
+    mode: 0777 
+
+- name: Install gunicorn supervisord script
+  template: 
+    src: supervisor_gunicorn.conf.j2
+    dest: "{{ supervisord_config_dir }}/conf.d/gunicorn.conf" 
+    owner: "{{ supervisord_user_name }}"
+    group: "{{ supervisord_group_name }}"
+    mode: 0777 
+  notify: restart gunicorn
