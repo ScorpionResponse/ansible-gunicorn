@@ -13,7 +13,25 @@ None.
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+### Required
+* `gunicorn_project_dir`: The directory of the project containing the wsgi
+  application.  Example: /var/www/django_app
+* `gunicorn_wsgi_application`: The wsgi application to invoke.  Example:
+  myapp.wsgi:application
+
+### Optional
+* `gunicorn_bind_address`: The bind method for communication with gunicorn.
+  Default: unix:/var/run/gunicorn.sock
+* `gunicorn_log_level`: The logging level.  Default: info
+* `gunicorn_config_dir`: The directory to be used for config info.  Default:
+  /etc/gunicorn
+* `gunicorn_log_dir`: The directory to store logs.  Default: /var/log/gunicorn
+* `gunicorn_user_name`: The user account to run gunicorn under. Default:
+  gunicorn
+* `gunicorn_group_name`: The group to run gunicorn under. Default: gunicorn
+* `gunicorn_reload`: Whether to activate hot-reloading of code (for
+  development).  Default: false
+* `gunicorn_workers`: The number of workers to instantiate. Default: 8
 
 Dependencies
 ------------
