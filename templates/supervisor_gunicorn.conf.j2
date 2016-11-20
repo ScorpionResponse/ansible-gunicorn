@@ -1,7 +1,7 @@
 [program:gunicorn]
 command=/usr/local/bin/gunicorn {{ gunicorn_wsgi_application }} -c {{ gunicorn_config_dir }}/gunicorn.conf.py
 directory={{ gunicorn_project_dir }}
-user={{ gunicorn_user_name }}
+user=nobody
 autostart=true
 autorestart=true
 redirect_stderr=true
