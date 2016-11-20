@@ -1,7 +1,18 @@
 ---
 - hosts: all
+  tasks:
+    - name: create basic wsgi.py script
+      blockinfile:
+        dest: /tmp/wsgi.py
+        block: |
+          def application(env, start_response):
+              start_response('200 OK', [('Content-Type', 'text/html')])
+              return ["Hello!"]
+        mode: 0777
+
+- hosts: all
   vars:
     - gunicorn_project_dir: "/tmp"
-    - gunicorn_wsgi_application: "test.wsgi:application"
+    - gunicorn_wsgi_application: "wsgi:application"
   roles:
     - role_under_test
