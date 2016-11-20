@@ -4,6 +4,7 @@
     - name: create basic wsgi.py script
       blockinfile:
         dest: /tmp/wsgi.py
+        create: yes
         block: |
           def application(env, start_response):
               start_response('200 OK', [('Content-Type', 'text/html')])
