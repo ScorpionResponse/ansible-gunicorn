@@ -9,5 +9,5 @@ errorlog = '{{ gunicorn_log_dir }}/error.log'
 
 reload = {% if gunicorn_reload %}True{% else %}False{% endif %}
 
-user = {{ gunicorn_user_name }}
-group = {{ gunicorn_group_name }}
+user = '{{ gunicorn_user_name }}'
+group = '{{ gunicorn_group_name }}'
