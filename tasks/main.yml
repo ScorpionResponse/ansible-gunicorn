@@ -7,12 +7,13 @@
 - name: Create Group for Gunicorn
   group:
     name: "{{ gunicorn_group_name }}"
+    system: yes
     state: present
 
 - name: Create User for Gunicorn
   user:
     name: "{{ gunicorn_user_name }}"
-    groups: "{{ gunicorn_group_name }}"
+    groups: "{{ gunicorn_group_name }},www-data"
     append: yes
 
 - name: Create gunicorn log directory
@@ -20,7 +21,7 @@
     path: "{{ gunicorn_log_dir }}"
     state: directory
     owner: "{{ gunicorn_user_name }}"
-    group: "{{ gunicorn_group_name }}"
+    group: "www-data"
     mode: 0775
 
 - name: Create gunicorn configuration directory
