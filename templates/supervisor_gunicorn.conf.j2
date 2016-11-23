@@ -4,3 +4,4 @@ directory={{ gunicorn_project_dir }}
 autostart=true
 autorestart=true
 redirect_stderr=true
+{% if gunicorn_django_settings %}environment=DJANGO_SETTINGS_MODULE="{{ gunicorn_django_settings }}"{% endif %}
