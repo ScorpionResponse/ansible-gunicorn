@@ -1,5 +1,5 @@
 ---
-gunicorn_bind_address: "unix:/var/run/gunicorn/gunicorn.sock"
+gunicorn_bind_address: "unix:/var/run/gunicorn/gunicorn.socket"
 
 gunicorn_log_level: info
 gunicorn_config_dir: "/etc/gunicorn"
