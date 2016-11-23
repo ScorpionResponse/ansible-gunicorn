@@ -32,6 +32,14 @@
     group: "{{ gunicorn_group_name }}"
     mode: 0775
 
+- name: Create gunicorn socket directory
+  file:
+    path: "/var/run/gunicorn"
+    state: directory
+    owner: "{{ gunicorn_user_name }}"
+    group: "www-data"
+    mode: 0775
+
 - name: Install gunicorn config script
   template: 
     src: gunicorn.conf.py.j2 
@@ -48,3 +56,11 @@
     group: "{{ supervisord_group_name }}"
     mode: 0777 
   notify: restart gunicorn
+
+- name: Install gunicorn tmpfiles.d config
+  template: 
+    src: tmpfiles_gunicorn.conf.j2
+    dest: "/etc/tmpfiles.d/gunicorn.conf" 
+    owner: "root"
+    group: "root"
+    mode: 0644
