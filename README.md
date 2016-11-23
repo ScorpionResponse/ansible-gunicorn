@@ -29,6 +29,8 @@ Role Variables
 * `gunicorn_user_name`: The user account to run gunicorn under. Default:
   gunicorn
 * `gunicorn_group_name`: The group to run gunicorn under. Default: gunicorn
+* `gunicorn_install_path`: The folder containing the gunicorn executable.
+  Change if you're using a virtualenv version of this.
 * `gunicorn_reload`: Whether to activate hot-reloading of code (for
   development).  Default: false
 * `gunicorn_workers`: The number of workers to instantiate. Default: 8

@@ -13,3 +13,4 @@ gunicorn_workers: 8
 
 gunicorn_project_dir: 
 gunicorn_wsgi_application:
+gunicorn_install_path: /usr/local/bin

@@ -1,5 +1,5 @@
 [program:gunicorn]
-command=/usr/local/bin/gunicorn {{ gunicorn_wsgi_application }} -c {{ gunicorn_config_dir }}/gunicorn.conf.py
+command={{ gunicorn_install_path }}/gunicorn {{ gunicorn_wsgi_application }} -c {{ gunicorn_config_dir }}/gunicorn.conf.py
 directory={{ gunicorn_project_dir }}
 autostart=true
 autorestart=true
